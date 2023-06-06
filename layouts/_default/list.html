@@ -2,7 +2,6 @@
 <body class="list h-feed">
   <header class="me">
     <div class="h-card p-author">
-    <span class="p-name" style="display: none;">Tales of a develoepr advocate</span>
     <img class="u-photo" src="/images/me.png" width="256" height="256">
     <h1>Hello.</h1> 
     <h2>Welcome to TL;DR Rocks</h2>
@@ -10,8 +9,7 @@
     </div>
   </header>
   <div>
-    {{ partial "menu.html" }}
-    <main class="hfeed">
+    <main>
 {{ $paginator := .Paginate ( where (where .Pages "Type" "page") ".Draft" "!=" true )}}
 {{ range $index, $element := $paginator.Pages }}
  
