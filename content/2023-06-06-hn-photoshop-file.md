@@ -2,8 +2,7 @@
 slug: hn-photoshop-file
 date: '2023-06-06T13:59:01'
 title: "Report: How Photoshop Solved Working with Files Larger than Can Fit into Memory"
-about: 
-https://developer.chrome.com/blog/how-photoshop-solved-working-with-files-larger-than-can-fit-into-memory/
+about: https://developer.chrome.com/blog/how-photoshop-solved-working-with-files-larger-than-can-fit-into-memory/
 source: https://news.ycombinator.com/item?id=36200480
 tags:
 - hackernews
