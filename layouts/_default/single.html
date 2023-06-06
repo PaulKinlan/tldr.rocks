@@ -16,7 +16,7 @@
       </div>
     </header>
     <main class="">
-        <p>This is an auto generated summary of the discusion on <a href="{{.Page.source}}">HackerNews</a></p>
+        <p>This is an auto generated summary of the discusion on <a href="{{ .Page.Params.source }}">HackerNews</a></p>
         {{ .Content }}
         {{ partial "share.html" . }}
         {{ partial "article_footer.html" . }}
