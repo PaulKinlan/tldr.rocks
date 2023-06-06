@@ -1,7 +1,7 @@
 {
-  "name": "Paul Kinlan - Modern Web Development",
-  "short_name": "Modern Web Dev with PK",
-  "description": "The blog of Paul Kinlan, where he muses about a lot of things related to modern web development.",
+  "name": "TL;DR Rocks",
+  "short_name": "TLDR",
+  "description": "Summary of social posts",
   "start_url": "/?homescreen=1",
   "theme_color": "#000000",
   "background_color": "#000000",
