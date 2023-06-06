@@ -9,9 +9,9 @@
     "@vercel/node": "^2.9.10",
     "@vercel/og": "^0.0.21",
     "ava": "^5.2.0",
-    "hugo-bin": "^0.97.0",
+    "hugo-bin": "^0.108.0",
     "multiparty": "^4.2.3",
-    "vercel": "^28.11.0",
+    "vercel": "^28.20.0",
     "whatwg-flora-tmpl": "^1.0.3"
   },
   "engines": {
