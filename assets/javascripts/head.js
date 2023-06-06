@@ -1,51 +1,4 @@
-(function (i, s, o, g, r, a, m) {
-  i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
-    (i[r].q = i[r].q || []).push(arguments)
-  }, i[r].l = 1 * new Date(); a = s.createElement(o),
-    m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
-})(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
-
-ga('create', 'UA-114468-20', 'auto');
-ga('send', 'pageview');
-
-if ('serviceWorker' in navigator) {
-  // Killing off all known SW for this site.
-  caches.keys().then((cacheKeys) => Promise.all(cacheKeys.map((key) => caches.delete(key))));
-  navigator.serviceWorker.getRegistrations().then(function (registrations) {
-    for (let registration of registrations) {
-      registration.unregister();
-    }
-  });
-}
-
-const deferLoadIframe = (iframe) => {
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const src = iframe.getAttribute("data-src");
-        iframe.setAttribute("src", src);
-        observer.unobserve(iframe);
-      }
-    });
-  });
-  observer.observe(iframe);
-}
-
 window.addEventListener("load", function () {
-  var iframes = document.getElementsByTagName("iframe");
-  for (var i = 0; i < iframes.length; i++) {
-    var ifr = iframes[i];
-    if (ifr.hasAttribute("data-src")) {
-      if ('IntersectionObserver' in window) {
-        deferLoadIframe(ifr);
-      }
-      else {
-        var src = ifr.getAttribute("data-src");
-        ifr.setAttribute("src", src);
-      }
-    }
-  }
-
   var shareButtons = document.querySelectorAll('div.share');
 
   for (var shareButton of shareButtons) {
@@ -68,8 +21,3 @@ window.addEventListener("load", function () {
     });
   }
 });
-
-window.onbeforeinstallprompt = function (e) {
-  e.preventDefault();
-  ga('send', 'event', 'install', 'prompt');
-};
