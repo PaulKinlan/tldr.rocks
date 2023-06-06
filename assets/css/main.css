@@ -347,6 +347,10 @@ div.widgets.source a {
   margin: 1em;
 }
 
+div.related.pages {
+  margin-top: 1em;
+}
+
 div.related.pages:empty {
   display: none;
 }
