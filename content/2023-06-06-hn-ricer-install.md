@@ -1,5 +1,5 @@
 ---
-slug: hn-popup
+slug: hn-richer-install
 date: '2023-06-06T15:58:01'
 title: "Report: Richer Install UI in Chrome on Hacker News"
 about: https://developer.chrome.com/blog/richer-install-ui-desktop/
