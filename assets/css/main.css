@@ -33,6 +33,7 @@ aside {
   margin: auto;
   text-align: left;
   max-width: 720px;
+  padding: 1em;
 }
 
 .me div {
@@ -97,16 +98,6 @@ body.list main .post header {
   background-origin: padding-box;
   background-attachment: scroll;
   box-sizing: border-box;
-}
-
-body.blogpost header.with-background,
-body.list main .post header.with-background {
-  height: 520px;
-  margin: 0;
-  margin-bottom: 2em;
-  width: 100%;
-  max-width: initial;
-  position: relative;
 }
 
 body.blogpost .byline {
