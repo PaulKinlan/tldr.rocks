@@ -1,0 +1,53 @@
+{{ partial "head.html" . }}
+
+<body class="list">
+  <header class="me">
+    <div>
+    <img src="/images/me.png">
+    <h1>Hello.</h1> 
+    <h2>I am Paul Kinlan.</h2>
+    <h3>This is my project area - some for fun, some real-world.</h3>
+    </div>
+  </header>
+  <div>
+    {{ partial "menu.html" }}
+    <main>
+
+{{ $paginator := .Paginate (where .Data.Pages ".Section" "projects") }}
+{{ range $index, $element := $paginator.Pages }}
+  <section class="post"> 
+    <header>
+       <h3><a href="{{ .Permalink }}">{{ .Title}}</a></h3>
+    </header>
+    <div class="description">
+      <div class="author">
+        <div>
+          <span><time pubdate>{{  .Date.Format "January 2 2006" }}</time></span>
+        </div>
+      </div>
+      <p>{{ if .Description }}{{ .Description | html }}{{ else }}{{ .Summary }}{{ end }} <a class="read-more" href="{{ .Permalink }}">
+        Read More
+     </a></p>
+    </div>
+  </section>
+  {{ if eq $index 0 }}
+    {{ partial "moi.html" . }}
+  {{end}}
+{{ end }}
+        
+      <nav style="text-align: center">
+         <div>
+          {{ if .Paginator.HasPrev }}
+          <a href="{{ .Paginator.Prev.URL }}">Previous</a>
+          {{ end }}
+          |
+          {{ if .Paginator.HasNext }}
+            <a href="{{ .Paginator.Next.URL }}">More</a>
+          {{ end }}
+          </div>
+        </nav>
+        </main>
+     </div>
+
+  </body>
+ </html>

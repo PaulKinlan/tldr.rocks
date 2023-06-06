@@ -1,0 +1,23 @@
+{
+  "name": "tldr.rocks",
+  "description": "tldr.rocks",
+  "dependencies": {
+    "@polymath-ai/client": "*",
+    "@polymath-ai/host": "*",
+    "@vercel/analytics": "^1.0.0",
+    "@vercel/edge": "^0.2.1",
+    "@vercel/node": "^2.9.10",
+    "@vercel/og": "^0.0.21",
+    "ava": "^5.2.0",
+    "hugo-bin": "^0.97.0",
+    "vercel": "^28.11.0",
+    "whatwg-flora-tmpl": "^1.0.3"
+  },
+  "engines": {
+    "node": ">= 18.0.0"
+  },
+  "devDependencies": {
+    "typescript": "^4.9.5"
+  },
+  "type": "module"
+}

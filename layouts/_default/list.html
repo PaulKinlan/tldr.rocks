@@ -1,0 +1,59 @@
+{{ partial "head.html" . }}
+<body class="list h-feed">
+  <header class="me">
+    <div class="h-card p-author">
+    <span class="p-name" style="display: none;">Tales of a develoepr advocate</span>
+    <img class="u-photo" src="/images/me.png" width="256" height="256">
+    <h1>Hello.</h1> 
+    <h2>I am <span class="fn">Paul Kinlan</span>.</h2>
+    <h3>I lead the Chrome and the Open Web Developer Relations team at Google.</h3>
+    </div>
+  </header>
+  <div>
+    {{ partial "menu.html" }}
+    <main class="hfeed">
+{{ $paginator := .Paginate ( where (where .Pages "Type" "page") ".Draft" "!=" true )}}
+{{ range $index, $element := $paginator.Pages }}
+ 
+  <section class="post entry"> 
+    <header class="{{ if .Params.image_header }}with-background{{end}}" style="{{ if .Params.image_header }}background-image: url('{{ .Params.image_header }}'); {{end}}">
+       <h3> <a href="{{ .Permalink }}" class="entry-title u-url">{{ .Title}}</a>
+        {{ if .Params.link }} &mdash; <a href="{{.Params.link}}">🔗</a>{{end}}</h3>
+        <div>
+          <span><time pubdate class="dt-published">{{  .Date.Format "January 2 2006" }}</time></span> &mdash; <span>Reading time: {{ .ReadingTime }} minute{{ if (ne .ReadingTime 1) }}s{{ end }}</span>
+        </div>
+    </header>
+    <div class="description">
+      <p class="nugget {{ if .Params.link }}entry-content{{else}}entry-summary{{end}}">
+        {{ if .Params.link }}
+          {{.Content }}  
+        {{else}}
+          {{ if .Description }}{{ .Description | html }}{{ else }}{{ .Summary }}{{ end }}
+        {{end}}  {{ if not .Params.link }}
+        <a class="read-more" href="{{ .Permalink }}">
+           Read More
+        </a>
+        {{end}}
+      </p>
+    </div>
+  </section>
+  {{ if eq $index 0 }}
+    {{ partial "moi.html" . }}
+  {{end}}
+{{ end }}
+
+  <nav style="text-align: center">
+    <div>
+    {{ if .Paginator.HasPrev }}
+    <a href="{{ .Paginator.Prev.URL }}">Previous</a>
+    {{ end }}
+    |
+    {{ if .Paginator.HasNext }}
+      <a href="{{ .Paginator.Next.URL }}">More</a>
+    {{ end }}
+    </div>
+  </nav>
+  </main>
+</div>
+</body>
+</html>

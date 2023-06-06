@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="iem7"><![endif]-->
+<html lang="{{.Page.Lang}}">
+<head lang="{{.Page.Lang}}">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link rel="preconnect" href="https://www.google-analytics.com" crossorigin>
+  {{ range $.Page.AllTranslations }}
+  <link rel="alternate" hreflang="{{.Lang}}" href="{{.Permalink}}" />{{if eq .Lang "en"}}
+  <link rel="alternate" hreflang="x-default" href="{{.Permalink}}" />{{end}}
+  {{ end }}
+  <title>{{if .IsPage }}{{ if .Title }}{{ .Title }}{{ end }}{{else}}{{.Site.Title}}{{end}}</title>
+  <link rel="canonical" href="{{ .Page.Permalink }}" />
+  <meta name="author" content="{{ .Site.Params.author }}">
+
+  <meta name="supported-color-schemes" content="light dark">
+
+  <meta name="theme-color" content="{{ if .Params.themecolor }}#{{ .Params.themecolor}}{{ else }}#000000{{ end }}">
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image">
+  {{if .Params.image_header}}
+    <meta name="twitter:image" content="{{.Params.image_header}}">
+  {{else}}
+  {{ $tags := .Params.tags}}
+    {{ if .Params.social_image_url }}
+    {{ $socialURL := printf "https://tldr.rocks/api/card?%s" (querify "title" .Title "imgUrl" .Params.social_image_url ) }}
+    <meta name="twitter:image" {{ printf "content=%q" $socialURL |  safeHTMLAttr}}>
+    <meta property="og:image" {{ printf "content=%q" $socialURL |  safeHTMLAttr}}>
+    {{else}}
+      {{ $socialURL := printf "https://tldr.rocks/api/card?%s" (querify "title" .Title) }}
+      <meta name="twitter:image" {{ printf "content=%q" $socialURL |  safeHTMLAttr}}>
+      <meta property="og:image" {{ printf "content=%q" $socialURL |  safeHTMLAttr}}>
+    {{end}}
+  {{end}}
+  <meta name="twitter:site" content="@paul_kinlan">
+  <meta name="twitter:creator" content="@paul_kinlan">
+  {{ if .Title }}
+  <meta name="twitter:title" content="{{ .Title }} ">
+  {{end}}
+  <meta name="description" content="{{if .Description}}{{ .Description }}{{else}}{{.Site.Params.Description}}{{end}}">
+  <meta name="twitter:description" content="{{if .Description}}{{ .Description }}{{else}}{{.Site.Params.Description}}{{end}}">
+  <script defer src="/_vercel/insights/script.js"></script>
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Person",
+      "name": "Paul Kinlan",
+      "url": "https://tldr.rocks/",
+      "sameAs": [
+        "https://paul.kinlan.me/",
+        "https://twitter.com/paul_kinlan",
+        "https://www.instagram.com/paul_kinlan/",
+        "https://www.linkedin.com/in/paulkinlan",
+        "https://plus.google.com/+paulkinlan",
+        "https://github.com/paulkinlan",
+        "https://en.wikipedia.org/wiki/Paul_Kinlan",
+        "https://medium.com/@paul_kinlan"
+      ]
+    }
+  </script>
+{{ if eq .Type "page" }}
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "NewsArticle",
+  "headline": {{.Title }},
+  "datePublished": "{{ .Date.Format "2006-01-02T15:04:05" }}",
+  "author": {
+    "@type": "Person",
+    "name": "Paul Kinlan",
+    "url": "https://paul.kinlan.me/"
+  },
+  "description": "{{if .Description}}{{ .Description }}{{else}}{{.Summary}}{{end}}"
+}
+</script>
+{{ end }}
+  <link rel="polymath" href="/polymath">
+  <link href="/images/me.png" rel="icon">
+  <link href="/manifest.json" rel="manifest">
+  <link rel="home" href="{{.Site.BaseURL}}">
+  <style>
+    {{ $openprops := resources.Get "css/open-props.css" }}
+    {{ $openpropsnormalize := resources.Get "css/open-props-normalize.css" }}
+    {{ $main := resources.Get "css/main.css" }}
+    {{ $css := slice $openprops $openpropsnormalize $main  | resources.Concat "css/bundle.css"  }}
+    {{ $minifiedCSS := $css | minify}}
+    {{ $minifiedCSS.Content | safeCSS }}
+
+    header.with-background {
+      {{ if .Params.image_header }}background-image: url('{{ .Params.image_header}}');{{ end }}
+    }
+  </style>
+  {{ range .AlternativeOutputFormats -}}
+  <link rel="{{ .Rel }}" type="{{ .MediaType.Type }}" href="{{ .Permalink | safeURL }}">
+  {{ end -}}
+
+  <script>
+let type='{{.Kind}}';
+{{ $headJS := resources.Get "javascripts/head.js" | minify }}
+{{ $headJS.Content | safeJS }}
+  </script>
+</head>

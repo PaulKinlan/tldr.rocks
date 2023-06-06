@@ -1,0 +1,64 @@
+baseurl = "https://tldr.rocks/"
+languageCode = "en-us"
+title = "TL;DRs from around the web"
+
+Copyright = "Paul Kinlan 2023"
+paginate = 20
+pygmentsCodeFences = true
+pygmentsCodeFencesGuessSyntax = true
+pygmentsStyle = "monokai"
+DefaultContentLanguage = "en"
+defaultContentLanguageInSubdir = false
+
+[services.rss]
+limit = 50
+
+[permalinks]
+post = "/:title/"
+
+[author]
+name = "Paul Kinlan"
+email = "paul.kinlan@gmail.com"
+
+[params]
+author = "Paul Kinlan"
+description = "Paul is a Developer Advocate for Chrome and the Open Web at Google and loves to help make web development easier."
+analyticsid = "UA-114468-20"
+
+[taxonimies]
+tag = "tags"
+
+[mediaTypes]
+[mediaTypes."text/javascript"]
+suffixes = ["js", "mjs"]
+[mediaTypes."application/activity+json"]
+suffixes = ["ajson"]
+
+
+[outputs]
+home = ["HTML", "RSS"]
+section = ["HTML", "RSS"]
+page = ["HTML"]
+
+[related]
+# Only include matches with rank >= threshold. This is a normalized rank between 0 and 100.
+threshold = 10
+
+# To get stable "See also" sections we, by default, exclude newer related pages.
+includeNewer = true
+
+# Will lower case keywords in both queries and in the indexes.
+toLower = false
+
+[[related.indices]]
+name = "tags"
+weight = 100
+
+[markup.goldmark.parser]
+autoHeadingID = true
+
+[markup.goldmark.extensions]
+typographer = false
+
+[markup.goldmark.renderer]
+unsafe = true
