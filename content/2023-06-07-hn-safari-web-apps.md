@@ -1,6 +1,6 @@
 ---
 slug: hn-safari-web-apps
-date: '2023-06-06T13:59:01'
+date: '2023-06-07T13:59:01'
 title: "Report: Web Apps on macOS Sonoma 14 Beta on HackerNews"
 about: https://blog.tomayac.com/2023/06/07/web-apps-on-macos-sonoma-14-beta/
 source: https://news.ycombinator.com/item?id=36237332
