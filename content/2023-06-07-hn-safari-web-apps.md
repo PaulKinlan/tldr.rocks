@@ -9,6 +9,8 @@ tags:
 - summary
 ---
 
+# ChatGPT 
+
 The comments on the Hacker News post about web apps on macOS Sonoma 14 Beta are generally mixed. Some users express excitement about the development, while others voice concerns about potential abuse and the nature of web notifications.
 
 ## Positive Sentiment
@@ -33,3 +35,29 @@ A few users discussed how to turn off notification pop-ups in Safari, but also n
 
 ## Summary
 Overall, the discussion on the post was nuanced, with users expressing both excitement and concern about the new developments in web apps on macOS Sonoma 14 Beta. The main points of contention revolved around the potential for abuse of new features, the intrusive nature of web notifications, and the trade-off between the convenience of web apps and the quality of native apps.
+
+# Claude
+
+Here is a summary of the discussion:
+
+Some users are excited about the potential of Safari web apps on macOS, seeing it as a step forward for progressive web apps and a possible alternative to Electron apps.
+
+Key benefits highlighted include:
+
++ Process isolation: Web apps run in a separate process, so Safari and web apps can run independently
++ Cookies are shared, so users remain logged in
++ Cross-origin links open in the default browser instead of the web app
+P+ otential performance gains vs. Electron apps
+
+However, some limitations were also noted:
+
++ Lack of file system access and other system APIs
++ Inability to run extensions
++ No tab support within web apps (yet)
++ Potential overuse of long, slow animations and transitions
+
+There was debate about whether banners prompting users to install web apps are a good idea, with most agreeing they are annoying and should be avoided.
+
+Some questioned Apple's motives, arguing the support for web apps may be strategically timed to coincide with their visionOS ambitions. Others pointed out that Apple is simply catching up to capabilities that have existed in Chrome and Edge for years.
+
+Overall, the consensus seems to be that these initial Safari web app capabilities represent a step in the right direction, but more support for system APIs, extensions, and features like tabs will be needed for web apps to truly replace Electron apps on macOS.
