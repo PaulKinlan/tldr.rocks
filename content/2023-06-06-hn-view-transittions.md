@@ -4,9 +4,11 @@ date: '2023-06-06T16:58:01'
 title: "Report: SPA view transitions land in Chrome 111 on Hacker News"
 about: https://developer.chrome.com/blog/spa-view-transitions-land/
 source: https://news.ycombinator.com/item?id=35091423
+generator: openai
 tags:
 - hackernews
 - summary
+- openai
 ---
 
 The post appears to be a discussion about transitions between two Document Object Model (DOM) states. The main sentiment appears to be mixed, with several themes emerging:

@@ -4,9 +4,11 @@ date: '2023-06-06T13:59:01'
 title: "Report: How Photoshop Solved Working with Files Larger than Can Fit into Memory"
 about: https://developer.chrome.com/blog/how-photoshop-solved-working-with-files-larger-than-can-fit-into-memory/
 source: https://news.ycombinator.com/item?id=36200480
+generator: openai
 tags:
 - hackernews
 - summary
+- openai
 ---
 The discussion on Hacker News revolves around the implementation of memory management in Photoshop, especially when dealing with large files. The article in question is not accessible, but we can piece together some insights from the comments.
 
