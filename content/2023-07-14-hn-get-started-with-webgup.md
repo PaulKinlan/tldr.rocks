@@ -1,7 +1,7 @@
 ---
 slug: hn-get-started-with-webgpu
 date: '2023-07-13T10:58:01'
-title: "Report: JavaScript import maps are now supported cross-browser on Hackernews"
+title: "Report: Get Started with Web GPU on Hackernews"
 about: https://developer.chrome.com/articles/gpu-compute/
 source: https://news.ycombinator.com/item?id=32150387
 generator: claude
