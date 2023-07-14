@@ -1,6 +1,6 @@
 ---
 slug: hn-import-files
-date: '2023-05-03T13:59:01'
+date: '2023-07-13T10:59:01'
 title: "Report: JavaScript import maps are now supported cross-browser on Hackernews"
 about: https://web.dev/import-maps-in-all-modern-browsers/
 source: https://news.ycombinator.com/item?id=35800711

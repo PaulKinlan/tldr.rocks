@@ -1,6 +1,6 @@
 ---
 slug: hn-new-in-chrome-115
-date: '2023-07-13T13:59:01'
+date: '2023-07-13T10:59:03'
 title: "Report: New In Chrome 115"
 about: https://developer.chrome.com/blog/new-in-chrome-115/
 source: https://news.ycombinator.com/item?id=36713737
