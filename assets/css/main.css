@@ -20,15 +20,6 @@ img.profile.photo {
   border-radius: 50% 50%;
 }
 
-aside {
-  background-color: wheat;
-  color: black;
-  padding: 1em;
-  border-radius: 0.5em;
-  margin: 1em;
-  border: dashed 3px #b78529;
-}
-
 .me {
   margin: auto;
   text-align: left;
@@ -77,17 +68,6 @@ body.blogpost hr {
   border: 0;
   background: #333;
   background-image: linear-gradient(to right, #ccc, #333, #ccc);
-}
-
-body.blogpost div.draft {
-  border: solid red 1px;
-  background-color: pink;
-  color: black;
-  padding: 1em;
-}
-
-body.blogpost div.draft a {
-  color: blue;
 }
 
 body.blogpost header,
@@ -291,13 +271,11 @@ blockquote {
   quotes: "\201C""\201D";
 }
 
-div.podcast,
 div.video {
   margin: 1em 0em;
   text-align: center;
 }
 
-div.podcast audio,
 div.video video {
   display: block;
   margin: 1em auto;
