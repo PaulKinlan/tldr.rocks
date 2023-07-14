@@ -40,3 +40,41 @@ Here is a summary of the key sentiments and recommendations from the Hacker News
 - Consider only introducing scroll animations that genuinely improve UX, not just for flair. Respect user preferences.
 
 - Try to leverage open standards rather than proprietary APIs where possible. Collaborate with other browser vendors.
+
+We asked the tool to go deeper on the just the privacy-related comments. Here is a summary of the key sentiments and recommendations from that analysis:
+
+## Positive Sentiment
+
+- A few commenters think the Topics API could be an improvement if users have transparency and control over the topics.
+
+## Negative Sentiment
+
+- Many commenters strongly object to the Topics API as fundamentally violating privacy. They see it as "tracking lite" and want the ability to fully opt out.
+
+- Concerns that Topics API allows Google to turn the open web into a walled garden where your browsing feeds its advertising machine.
+
+- Dislike of the Topics API recording browsing activity and insinuating interests without consent. This should be opt-in.
+
+- Worry the Topics API will exploit those who don't proactively protect privacy with things like ad blockers.
+
+- Suspicion of Google's motives given conflict of interest between Chrome and advertising business.
+
+- Belief Google is circumventing other browsers' privacy protections with Topics API.
+
+- Fenced Frames seen as undoing third-party cookie isolation and giving backdoor to advertisers.
+
+## Recommendations
+
+- Make Topics API opt-in only. Do not enable by default without consent.
+
+- Allow users to see, edit or disable topics. Full user control is essential.
+
+- Provide transparency into what topics are chosen and how they are inferred. 
+
+- Give users ability to completely opt out of Topics API tracking if they want.
+
+- Ensure Fenced Frames include strong protections against advertiser abuse.
+
+- Prioritize user privacy over advertising business interests.
+
+- Collaborate with other browsers on privacy-preserving standards.
