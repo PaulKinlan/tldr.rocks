@@ -13,7 +13,7 @@ tags:
 
 Here is a summary of the key points from the Hacker News post:
 
-## Positive Sentiment
+#### Positive Sentiment
 
 - WebGPU provides a common API for accessing GPU capabilities across browsers and platforms. This makes it easier for developers to leverage GPU power in web apps.
 
@@ -23,7 +23,7 @@ Here is a summary of the key points from the Hacker News post:
 
 - Tools like WebDNN could allow running neural net inference on WebGPU. This expands the capabilities of web apps.
 
-## Negative Sentiment 
+#### Negative Sentiment 
 
 - WebGPU is still evolving and has rough edges. The API syntax is not yet finalized.
 
@@ -33,7 +33,7 @@ Here is a summary of the key points from the Hacker News post:
 
 - It's unclear if WebGPU will work well for training machine learning models. The focus seems to be on inference.
 
-## Recommendations
+#### Recommendations
 
 - Prioritize finalizing the API and settling on a stable syntax. This will reassure developers.
 

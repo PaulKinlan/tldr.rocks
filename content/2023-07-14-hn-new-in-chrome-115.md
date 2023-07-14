@@ -13,7 +13,7 @@ tags:
 
 Here is a summary of the key sentiments and recommendations from the Hacker News post:
 
-## Positive Sentiment
+#### Positive Sentiment
 
 - Some commenters think the Topics API is an improvement over third-party cookies for preserving privacy while still allowing relevant ads. They see it as a pragmatic approach given Google's business model.
 
@@ -21,7 +21,7 @@ Here is a summary of the key sentiments and recommendations from the Hacker News
 
 - There is optimism WebGPU will come to Linux in Chrome soon.
 
-## Negative Sentiment 
+#### Negative Sentiment 
 
 - Many commenters see the Topics API as just another form of tracking and are very distrustful of Google's motives with it. They want the ability to fully opt out.
 
@@ -31,7 +31,7 @@ Here is a summary of the key sentiments and recommendations from the Hacker News
 
 - Dismay that Chrome is adding more proprietary APIs rather than supporting open web standards.
 
-## Recommendations
+#### Recommendations
 
 - Allow users to fully opt out of tracking like the Topics API if they want to. Make it very clear how to do this.
 
@@ -43,11 +43,11 @@ Here is a summary of the key sentiments and recommendations from the Hacker News
 
 We asked the tool to go deeper on the just the privacy-related comments. Here is a summary of the key sentiments and recommendations from that analysis:
 
-## Positive Sentiment
+#### Positive Sentiment
 
 - A few commenters think the Topics API could be an improvement if users have transparency and control over the topics.
 
-## Negative Sentiment
+#### Negative Sentiment
 
 - Many commenters strongly object to the Topics API as fundamentally violating privacy. They see it as "tracking lite" and want the ability to fully opt out.
 
@@ -63,7 +63,7 @@ We asked the tool to go deeper on the just the privacy-related comments. Here is
 
 - Fenced Frames seen as undoing third-party cookie isolation and giving backdoor to advertisers.
 
-## Recommendations
+#### Recommendations
 
 - Make Topics API opt-in only. Do not enable by default without consent.
 

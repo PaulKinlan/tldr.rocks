@@ -13,7 +13,7 @@ tags:
 
 Here is a summary of the key sentiments and recommendations from the Hacker News comments on the post about JavaScript import maps:
 
-## Positive Sentiment
+#### Positive Sentiment
 
 - Import maps allow skipping the bundling step, which simplifies build pipelines. Some see this as a major win, especially when starting new projects.
 
@@ -25,7 +25,7 @@ Here is a summary of the key sentiments and recommendations from the Hacker News
 
 - Rails 7 uses import maps by default, which avoids the need for a separate JS bundler. This simplification is appreciated. 
 
-## Negative Sentiment
+#### Negative Sentiment
 
 - Performance, security, and ergonomics of import maps do not seem as good as bundling in many cases. They require extra steps to match bundling benefits.
 
@@ -37,7 +37,7 @@ Here is a summary of the key sentiments and recommendations from the Hacker News
 
 - The syntax does not feel intuitive and requires constantly looking up how to use it. It adds complexity compared to script tags.
 
-## Recommendations
+#### Recommendations
 
 - Consider bundling for production use cases, at least optionally, to better optimize performance and security.
 
