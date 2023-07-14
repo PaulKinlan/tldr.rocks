@@ -1,0 +1,37 @@
+---
+slug: hn-trignometic-functions
+date: '2023-07-14T10:59:01'
+title: "Report: Trigonometric Functions in CSS on HackerNews"
+about: https://web.dev/css-trig-functions/
+generator: claude
+source: https://news.ycombinator.com/item?id=35336402
+tags:
+- hackernews
+- summary
+- claude
+---
+
+Here is a summary of the key points from the Hacker News post:
+
+#### Positive Sentiment
+
+- Appreciation for how far CSS has come over the years in terms of capabilities like trigonometric functions, animations, etc.
+- Praise for the thoughtfulness and attention to detail in the ongoing evolution of CSS.
+- Acknowledgement that CSS syntax itself is well designed.
+- Examples of complex UI effects possible with modern CSS are impressive.
+
+#### Negative Sentiment
+
+- Concern that CSS has suffered from too much feature creep over the years.
+- Frustration that CSS was not designed as a real programming language from the start.
+- Complaints about lack of browser compatibility and having to support old browsers.
+- Criticism that CSS does not cleanly separate structure and presentation.
+- Belief that HTML and CSS are not suited for building complex interactive UIs.
+
+#### Recommended Actions
+
+- Create a "YouCanUseCSS.com" site to clearly document latest CSS features supported across browsers.
+- Improve documentation and tutorials focused on modern CSS capabilities. 
+- Make browser implementations more consistent.
+- Continue work on Houdini APIs to open up CSS internals to JavaScript.
+- Long term, consider ways to evolve CSS fundamentals while maintaining backward compatibility.
