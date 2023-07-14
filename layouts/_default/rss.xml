@@ -36,7 +36,7 @@
       {{ with .Site.Author.email }}<author>{{.}}{{ with $.Site.Author.name }} ({{.}}){{end}}</author>{{end}}
       <guid>{{ .Permalink }}</guid>
       <description>{{ .Summary | html }}</description>
-      <content:encoded> {{ printf "<![CDATA[" | safeHTML }}
+      <content:encoded>{{ printf "<![CDATA[ Note: This is an auto generated summary of the discussion on <a href=\"{{ .Page.Params.source }}\">HackerNews</a> about the <a href=\"{{ .Page.Params.about }}\">following article</a>. The article was summarized using {{title .Page.Params.generator}} and the results may contain inaccuracies and even falsehoods. <h2>Report</h2>" | safeHTML }}
     {{- printf "%s" .Content | safeHTML }}
   {{- printf "]]>" | safeHTML }}</content:encoded>
     </item>
