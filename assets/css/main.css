@@ -9,9 +9,18 @@ div.widgets {
   text-align: center;
 }
 
+main h1,h2,h3,h4,h5,h6 {
+  margin-top: 1ch;
+}
+
 #mentions, #fediverse {
   border: none;
   width: 100%;
+}
+
+aside {
+  border-left: var(--blue-10) 1ch solid;
+  padding-left: 1ch;
 }
 
 img.profile.photo {

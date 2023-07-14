@@ -18,7 +18,7 @@
     <main class="">
         {{if .Page.Params.source }}
         <aside>
-          <p>This is an auto generated summary of the discussion on <a href="{{ .Page.Params.source }}">HackerNews</a> about the <a href="{{ .Page.Params.about }}">following article</a>. The article was summarized using {{title .Page.Params.generator}} and the results may contain inaccuracies and even falsehoods, it is only used to help identify areas in the article where more attention might be warranted.</p>
+          This is an auto generated summary of the discussion on <a href="{{ .Page.Params.source }}">HackerNews</a> about the <a href="{{ .Page.Params.about }}">following article</a>. The article was summarized using {{title .Page.Params.generator}} and the results may contain inaccuracies and even falsehoods.
         </aside>
         {{end}}
         {{ .Content }}
