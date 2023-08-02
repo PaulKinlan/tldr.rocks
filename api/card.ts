@@ -8,7 +8,7 @@ export default function (req: Request) {
 
   const url = new URL(req.url);
   const title = url.searchParams.get("title");
-  const imgUrl = url.searchParams.get("imgUrl") || "https://tldr.rocks/images/me.png";
+  const imgUrl = "https://tldr.rocks/images/me.png";
   const width = url.searchParams.get("width") || "800"
   const height = url.searchParams.get("height") || "418";
 
