@@ -15,14 +15,6 @@
     {
       "source": "/(.+)/$",
       "destination": "/$1/index.html"
-    },
-    {
-      "source": "/ask-paul",
-      "destination": "/api/ask-paul.ts"
-    },
-    {
-      "source": "/polymath",
-      "destination": "/api/polymath/ask.ts"
     }
   ]
 }
