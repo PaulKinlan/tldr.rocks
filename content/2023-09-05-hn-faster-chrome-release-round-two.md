@@ -1,8 +1,8 @@
 ---
 slug: hn-faster-chrome-release-round-two
-date: '2023-09-06T10:59:01'
+date: '2023-09-05T10:59:01'
 title: "Report: Faster Chrome releases (round two!)s"
-about: hhttps://developer.chrome.com/blog/faster-chrome-releases-round2/
+about: https://developer.chrome.com/blog/faster-chrome-releases-round2/
 generator: claude
 source: https://news.ycombinator.com/item?id=37343267
 tags:
