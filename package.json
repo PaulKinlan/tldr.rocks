@@ -1,24 +1,25 @@
 {
   "name": "tldr.rocks",
   "description": "tldr.rocks",
+  "scripts": {
+    "summarize": "node --no-warnings=ExperimentalWarning --loader=ts-node/esm ./tools/summarize.ts"
+  },
   "dependencies": {
-    "@polymath-ai/client": "*",
-    "@polymath-ai/host": "*",
+    "@google-labs/breadboard": "^0.3.1",
+    "@paulkinlan/claude-breadboard-kit": "^1.1.0",
     "@vercel/analytics": "^1.0.0",
     "@vercel/edge": "^0.2.1",
     "@vercel/node": "^2.9.10",
     "@vercel/og": "^0.0.21",
     "ava": "^5.2.0",
-    "hugo-bin": "^0.97.0",
+    "hugo-bin": "^0.115.0",
     "multiparty": "^4.2.3",
-    "vercel": "^28.11.0",
+    "typescript": "^5.2.2",
+    "vercel": "^32.4.1",
     "whatwg-flora-tmpl": "^1.0.3"
   },
   "engines": {
     "node": ">= 18.0.0"
-  },
-  "devDependencies": {
-    "typescript": "^4.9.5"
   },
   "type": "module"
 }

@@ -1,0 +1,105 @@
+{
+  "edges": [
+    {
+      "from": "secrets-2",
+      "to": "generateCompletion",
+      "out": "CLAUDE_API_KEY",
+      "in": "CLAUDE_API_KEY"
+    },
+    {
+      "from": "input-hacker-news",
+      "to": "urlTemplate",
+      "out": "text",
+      "in": "id"
+    },
+    {
+      "from": "urlTemplate",
+      "to": "fetch-url",
+      "out": "url",
+      "in": "url"
+    },
+    {
+      "from": "fetch-url",
+      "to": "promptTemplate",
+      "out": "text",
+      "in": "text"
+    },
+    {
+      "from": "promptTemplate",
+      "to": "generateCompletion",
+      "out": "text",
+      "in": "content"
+    },
+    {
+      "from": "input-model",
+      "to": "generateCompletion",
+      "out": "model",
+      "in": "model"
+    },
+    {
+      "from": "generateCompletion",
+      "to": "output-1",
+      "out": "completion",
+      "in": "text"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "generateCompletion",
+      "type": "generateCompletion"
+    },
+    {
+      "id": "secrets-2",
+      "type": "secrets",
+      "configuration": {
+        "keys": [
+          "CLAUDE_API_KEY"
+        ]
+      }
+    },
+    {
+      "id": "input-hacker-news",
+      "type": "input",
+      "configuration": {
+        "message": "Which Hacker News post would you like to generate a summary for?"
+      }
+    },
+    {
+      "id": "urlTemplate",
+      "type": "urlTemplate",
+      "configuration": {
+        "template": "https://news.ycombinator.com/item?id={{id}}"
+      }
+    },
+    {
+      "id": "fetch-url",
+      "type": "fetch",
+      "configuration": {
+        "raw": true
+      }
+    },
+    {
+      "id": "promptTemplate",
+      "type": "promptTemplate",
+      "configuration": {
+        "template": "Summarize the following Hackernews comment section: {{content}}\n\\n## Summary:\n"
+      }
+    },
+    {
+      "id": "input-model",
+      "type": "input",
+      "configuration": {
+        "message": "What is your model?"
+      }
+    },
+    {
+      "id": "output-1",
+      "type": "output"
+    }
+  ],
+  "kits": [
+    {
+      "url": "npm:@google-labs/llm-starter"
+    }
+  ]
+}
