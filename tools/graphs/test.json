@@ -1,0 +1,54 @@
+{
+  "edges": [
+    {
+      "from": "input-hacker-news",
+      "to": "urlTemplate",
+      "out": "text",
+      "in": "id"
+    },
+    {
+      "from": "urlTemplate",
+      "to": "fetch-url",
+      "out": "url",
+      "in": "url"
+    },
+    {
+      "from": "fetch-url",
+      "to": "output",
+      "out": "text",
+      "in": "text"
+    }
+  ],
+  "nodes": [  
+    {
+      "id": "input-hacker-news",
+      "type": "input",
+      "configuration": {
+        "message": "Which Hacker News post would you like to generate a summary for?"
+      }
+    },
+    {
+      "id": "urlTemplate",
+      "type": "urlTemplate",
+      "configuration": {
+        "template": "https://news.ycombinator.com/item?id={{id}}"
+      }
+    },
+    {
+      "id": "fetch-url",
+      "type": "fetch",
+      "configuration": {
+        "raw": true
+      }
+    },
+    {
+      "id": "output",
+      "type": "output"
+    }
+  ],
+  "kits": [
+    {
+      "url": "npm:@google-labs/llm-starter"
+    }
+  ]
+}
