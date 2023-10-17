@@ -4,10 +4,13 @@ import { Claude } from "@paulkinlan/claude-breadboard-kit";
 import path from "path";
 
 const board = await Board.load(
-  path.join(process.cwd(), "tools", "graphs", "test.json")
+  path.join(process.cwd(), "tools", "graphs", "test.json"),
+  {
+    "kits": {
+      "@paulkinlan/claude-breadboard-kit": Claude
+    }
+  }
 );
-
-board.addKit(Claude);
 
 const result = await board.runOnce({
   model: "claude-2",
