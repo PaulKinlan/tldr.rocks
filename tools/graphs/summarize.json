@@ -1,15 +1,9 @@
 {
   "edges": [
     {
-      "from": "secrets-2",
-      "to": "generateCompletion",
-      "out": "CLAUDE_API_KEY",
-      "in": "CLAUDE_API_KEY"
-    },
-    {
       "from": "input-hacker-news",
       "to": "urlTemplate",
-      "out": "text",
+      "out": "input-hacker-news",
       "in": "id"
     },
     {
@@ -21,14 +15,20 @@
     {
       "from": "fetch-url",
       "to": "promptTemplate",
-      "out": "text",
-      "in": "text"
+      "out": "response",
+      "in": "content"
     },
     {
       "from": "promptTemplate",
       "to": "generateCompletion",
-      "out": "text",
-      "in": "content"
+      "out": "prompt",
+      "in": "text"
+    },
+    {
+      "from": "secrets",
+      "to": "generateCompletion",
+      "out": "CLAUDE_API_KEY",
+      "in": "CLAUDE_API_KEY"
     },
     {
       "from": "input-model",
@@ -38,7 +38,7 @@
     },
     {
       "from": "generateCompletion",
-      "to": "output-1",
+      "to": "output",
       "out": "completion",
       "in": "text"
     }
@@ -49,7 +49,7 @@
       "type": "generateCompletion"
     },
     {
-      "id": "secrets-2",
+      "id": "secrets",
       "type": "secrets",
       "configuration": {
         "keys": [
@@ -68,7 +68,7 @@
       "id": "urlTemplate",
       "type": "urlTemplate",
       "configuration": {
-        "template": "https://news.ycombinator.com/item?id={{id}}"
+        "template": "https://news.ycombinator.com/item?id={id}"
       }
     },
     {
@@ -93,13 +93,16 @@
       }
     },
     {
-      "id": "output-1",
+      "id": "output",
       "type": "output"
     }
   ],
   "kits": [
     {
       "url": "npm:@google-labs/llm-starter"
+    },
+    {
+      "url": "npm:@paulkinlan/claude-breadboard-kit"
     }
   ]
 }
