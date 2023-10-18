@@ -6,7 +6,7 @@
   },
   "dependencies": {
     "@google-labs/breadboard": "^0.4.0",
-    "@paulkinlan/claude-breadboard-kit": "^1.2.0",
+    "@paulkinlan/claude-breadboard-kit": "^1.2.2",
     "@vercel/analytics": "^1.0.0",
     "@vercel/edge": "^0.2.1",
     "@vercel/node": "^2.9.10",
