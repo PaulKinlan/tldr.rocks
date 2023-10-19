@@ -8,12 +8,12 @@
     },
     {
       "from": "urlTemplate",
-      "to": "fetch-url",
+      "to": "fetch-hn-url",
       "out": "url",
       "in": "url"
     },
     {
-      "from": "fetch-url",
+      "from": "fetch-hn-url",
       "to": "parse-dom",
       "out": "response",
       "in": "html"
@@ -43,10 +43,40 @@
       "in": "model"
     },
     {
+      "from": "parse-dom",
+      "to": "join",
+      "out": "url",
+      "in": "url"
+    },
+    {
+      "from": "parse-dom",
+      "to": "fetch-url",
+      "out": "url",
+      "in": "url"
+    },
+    {
+      "from": "fetch-url",
+      "to": "get-title",
+      "out": "response",
+      "in": "html"
+    },
+    {
+      "from": "get-title",
+      "to": "join",
+      "out": "title",
+      "in": "title"
+    },
+    {
       "from": "generateCompletion",
-      "to": "output",
+      "to": "join",
       "out": "completion",
       "in": "text"
+    },
+    {
+      "from": "join",
+      "to": "output",
+      "out": "data",
+      "in": "data"
     }
   ],
   "nodes": [
@@ -78,6 +108,13 @@
       }
     },
     {
+      "id": "fetch-hn-url",
+      "type": "fetch",
+      "configuration": {
+        "raw": true
+      }
+    },
+    {
       "id": "fetch-url",
       "type": "fetch",
       "configuration": {
@@ -87,6 +124,10 @@
     {
       "id": "parse-dom",
       "type": "jsdom"
+    },
+    {
+      "id": "get-title",
+      "type": "getTitle"
     },
     {
       "id": "promptTemplate",
@@ -105,6 +146,10 @@
     {
       "id": "output",
       "type": "output"
+    },
+    {
+      "id": "join",
+      "type": "join"
     }
   ],
   "kits": [

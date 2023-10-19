@@ -1,7 +1,6 @@
-/// <reference path="./types.d.ts" />
+import '@anthropic-ai/sdk/shims/web'; // this is needed because Anthropic SDK makes some false assumptions about the environment
 import { Board } from "@google-labs/breadboard";
 import { KitBuilder } from "@google-labs/breadboard/kits";
-import '@anthropic-ai/sdk/shims/web'; // this is needed because Anthopic SDK makes some false assumptions about the environment
 import { Claude } from "@paulkinlan/claude-breadboard-kit";
 import jsdom from "jsdom";
 import path from "path";
@@ -14,7 +13,21 @@ const kit = kitBuilder.build({
     "jsdom": {
         invoke: async function (inputs) {
             const dom = new jsdom.JSDOM(inputs.html);
-            return { text: dom.window.document.body.textContent };
+            const text = dom.window.document.body.textContent;
+            const url = dom.window.document.querySelector("span.titleline > a")?.href;
+            return { text, url };
+        }
+    },
+    "getTitle": {
+        invoke: async function (inputs) {
+            const dom = new jsdom.JSDOM(inputs.html);
+            console.log(dom.window.document.title)
+            return { title: dom.window.document.title };
+        }
+    },
+    "join": {
+        invoke: async function (inputs) {
+            return { data: JSON.stringify(inputs) };
         }
     }
 });
@@ -24,16 +37,18 @@ const board = await Board.load(path.join(process.cwd(), "tools", "graphs", "summ
         "jsdom": kit
     }
 });
+
 const hn_post = "37917597";
 const result = await board.runOnce({
     "model": "claude-2",
     "input-hacker-news": hn_post
 });
+const data = JSON.parse(result.data);
 console.log(`---
 slug: hn-${hn_post}
 date: '${new Date().toISOString()}'
-title: "Report: ADD A TITLE"
-about: https://developer.chrome.com/blog/how-photoshop-solved-working-with-files-larger-than-can-fit-into-memory/
+title: "Report: ${data.title}"
+about: ${data.url}
 source: https://news.ycombinator.com/item?id=${hn_post}
 generator: claude
 tags:
@@ -41,5 +56,5 @@ tags:
 - summary
 - claude
 ---
-${result.text}
+${data.text}
 `);

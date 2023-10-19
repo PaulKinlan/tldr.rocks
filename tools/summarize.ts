@@ -1,8 +1,7 @@
+import '@anthropic-ai/sdk/shims/web'; // this is needed because Anthropic SDK makes some false assumptions about the environment
 import { Board, InputValues, NodeValue } from "@google-labs/breadboard";
 import { KitBuilder } from "@google-labs/breadboard/kits";
-import '@anthropic-ai/sdk/shims/web'; // this is needed because Anthropic SDK makes some false assumptions about the environment
 import { Claude } from "@paulkinlan/claude-breadboard-kit";
-
 import jsdom from "jsdom";
 import path from "path";
 
@@ -18,7 +17,21 @@ const kit = kitBuilder.build({
   "jsdom": {
     invoke: async function (inputs: InputValues): JSDOMOutputValues {
       const dom = new jsdom.JSDOM(<string>inputs.html);
-      return { text: dom.window.document.body.textContent };
+      const text = dom.window.document.body.textContent;
+      const url = (<HTMLAnchorElement> dom.window.document.querySelector("span.titleline > a"))?.href;
+      return { text, url };
+    }
+  },
+  "getTitle": {
+    invoke: async function (inputs: InputValues): JSDOMOutputValues {
+      const dom = new jsdom.JSDOM(<string>inputs.html);
+
+      return { title: dom.window.document.title };
+    }
+  },
+  "join": {
+    invoke: async function (inputs: InputValues): JSDOMOutputValues {
+      return { data: JSON.stringify(inputs) };
     }
   }
 });
@@ -40,11 +53,13 @@ const result = await board.runOnce({
   "input-hacker-news": hn_post
 });
 
+const data = JSON.parse(<string>result.data);
+
 console.log(`---
 slug: hn-${hn_post}
 date: '${new Date().toISOString()}'
-title: "Report: ADD A TITLE"
-about: https://developer.chrome.com/blog/how-photoshop-solved-working-with-files-larger-than-can-fit-into-memory/
+title: "Report: ${data.title}"
+about: ${data.url}
 source: https://news.ycombinator.com/item?id=${hn_post}
 generator: claude
 tags:
@@ -52,5 +67,5 @@ tags:
 - summary
 - claude
 ---
-${result.text}
+${data.text}
 `)
