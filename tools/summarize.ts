@@ -8,6 +8,15 @@ import parseArgs from "minimist";
 
 type JSDOMOutputValues = Promise<void | Partial<Record<string, NodeValue>>>;
 
+const argv = parseArgs(process.argv.slice(2));
+
+if (argv._.length !== 1) { 
+  console.error("Usage: summarize.ts <hn-post-id>");
+  process.exit(1);
+}
+
+const hn_post = argv._[0];
+
 const kitBuilder = new KitBuilder({
   title: "jsdom",
   description: "Converts html in to a DOM that can be queried.",
@@ -46,15 +55,6 @@ const board = await Board.load(
     }
   }
 );
-
-const argv = parseArgs(process.argv.slice(2));
-
-if (argv._.length !== 1) { 
-  console.error("Usage: summarize.ts <hn-post-id>");
-  process.exit(1);
-}
-
-const hn_post = argv._[0];
 
 const result = await board.runOnce({
   "model": "claude-2",
