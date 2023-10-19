@@ -4,6 +4,7 @@ import { KitBuilder } from "@google-labs/breadboard/kits";
 import { Claude } from "@paulkinlan/claude-breadboard-kit";
 import jsdom from "jsdom";
 import path from "path";
+import parseArgs from "minimist";
 
 type JSDOMOutputValues = Promise<void | Partial<Record<string, NodeValue>>>;
 
@@ -46,7 +47,14 @@ const board = await Board.load(
   }
 );
 
-const hn_post =  "37917597";
+const argv = parseArgs(process.argv.slice(2));
+
+if (argv._.length !== 1) { 
+  console.error("Usage: summarize.ts <hn-post-id>");
+  process.exit(1);
+}
+
+const hn_post = argv._[0];
 
 const result = await board.runOnce({
   "model": "claude-2",

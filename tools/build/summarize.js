@@ -4,6 +4,7 @@ import { KitBuilder } from "@google-labs/breadboard/kits";
 import { Claude } from "@paulkinlan/claude-breadboard-kit";
 import jsdom from "jsdom";
 import path from "path";
+import parseArgs from "minimist";
 const kitBuilder = new KitBuilder({
     title: "jsdom",
     description: "Converts html in to a DOM that can be queried.",
@@ -21,7 +22,6 @@ const kit = kitBuilder.build({
     "getTitle": {
         invoke: async function (inputs) {
             const dom = new jsdom.JSDOM(inputs.html);
-            console.log(dom.window.document.title)
             return { title: dom.window.document.title };
         }
     },
@@ -37,8 +37,12 @@ const board = await Board.load(path.join(process.cwd(), "tools", "graphs", "summ
         "jsdom": kit
     }
 });
-
-const hn_post = "37917597";
+const argv = parseArgs(process.argv.slice(2));
+if (argv._.length !== 1) {
+    console.error("Usage: summarize.ts <hn-post-id>");
+    process.exit(1);
+}
+const hn_post = argv._[0];
 const result = await board.runOnce({
     "model": "claude-2",
     "input-hacker-news": hn_post

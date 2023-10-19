@@ -2,7 +2,7 @@
   "name": "tldr.rocks",
   "description": "tldr.rocks",
   "scripts": {
-    "summarize": "node --no-warnings=ExperimentalWarning --loader=ts-node/esm ./tools/summarize.ts"
+    "summarize": "node tools/build/summarize.js"
   },
   "dependencies": {
     "@google-labs/breadboard": "^0.4.0",
@@ -20,10 +20,11 @@
     "vercel": "^32.4.1"
   },
   "engines": {
-    "node": ">= 20.0.0"
+    "node": ">= 18.0.0"
   },
   "type": "module",
   "devDependencies": {
-    "@types/jsdom": "^21.1.4"
+    "@types/jsdom": "^21.1.4",
+    "@types/minimist": "^1.2.4"
   }
 }
