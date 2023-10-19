@@ -14,8 +14,14 @@
     },
     {
       "from": "fetch-url",
-      "to": "promptTemplate",
+      "to": "parse-dom",
       "out": "response",
+      "in": "html"
+    },
+    {
+      "from": "parse-dom",
+      "to": "promptTemplate",
+      "out": "text",
       "in": "content"
     },
     {
@@ -79,10 +85,14 @@
       }
     },
     {
+      "id": "parse-dom",
+      "type": "jsdom"
+    },
+    {
       "id": "promptTemplate",
       "type": "promptTemplate",
       "configuration": {
-        "template": "Summarize the following Hackernews comment section: {{content}}\n\\n## Summary:\n"
+        "template": "Summarize this Hacker News post. The output should be in Markdown and have three sections: Positive Sentiment; Negative Sentiment; Recommend actions to address the feedback. Extract up to 5 of the most relevant links to external content that are in the text and add them to an \"Interesting links\" section. Do not include malformed URLs.\n\n{{content}}\n\n## Summary:\n"
       }
     },
     {
@@ -103,6 +113,9 @@
     },
     {
       "url": "npm:@paulkinlan/claude-breadboard-kit"
+    },
+    {
+      "url": "npm:jsdom"
     }
   ]
 }

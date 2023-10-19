@@ -6,8 +6,8 @@
     "strict": true,
     "skipLibCheck": true,
     "outDir": "build",
-    "module": "esnext",
-    "moduleResolution": "node"
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext"
   },
   "files": [
     "summarize.ts",
