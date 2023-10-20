@@ -1,7 +1,9 @@
 import '@anthropic-ai/sdk/shims/web'; // this is needed because Anthropic SDK makes some false assumptions about the environment
-import { Board, InputValues, NodeValue } from "@google-labs/breadboard";
+import { Board, InputValues, LogProbe, NodeValue } from "@google-labs/breadboard";
 import { KitBuilder } from "@google-labs/breadboard/kits";
 import { Claude } from "@paulkinlan/claude-breadboard-kit";
+// @ts-ignore
+import htmlclean from "htmlclean";
 import jsdom from "jsdom";
 import path from "path";
 import parseArgs from "minimist";
@@ -26,10 +28,17 @@ const kitBuilder = new KitBuilder({
 const kit = kitBuilder.build({
   "jsdom": {
     invoke: async function (inputs: InputValues): JSDOMOutputValues {
-      const dom = new jsdom.JSDOM(<string>inputs.html);
+      const dom = new jsdom.JSDOM(htmlclean(<string>inputs.html));
       const text = dom.window.document.body.textContent;
       const url = (<HTMLAnchorElement> dom.window.document.querySelector("span.titleline > a"))?.href;
       return { text, url };
+    }
+  },
+  "getTextContent": {
+    invoke: async function (inputs: InputValues): JSDOMOutputValues {
+      const dom = new jsdom.JSDOM(htmlclean(<string>inputs.html));
+      const text = dom.window.document.body.textContent;
+      return { text };
     }
   },
   "getTitle": {
@@ -56,6 +65,9 @@ const board = await Board.load(
   }
 );
 
+//const log = new LogProbe();
+// log.addEventListener("log", console.log)
+
 const result = await board.runOnce({
   "model": "claude-2",
   "input-hacker-news": hn_post
@@ -75,5 +87,9 @@ tags:
 - summary
 - claude
 ---
+### Article summary
+${data.summary}
+
+### Comment summary
 ${data.text}
 `)

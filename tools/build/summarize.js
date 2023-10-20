@@ -2,9 +2,17 @@ import '@anthropic-ai/sdk/shims/web'; // this is needed because Anthropic SDK ma
 import { Board } from "@google-labs/breadboard";
 import { KitBuilder } from "@google-labs/breadboard/kits";
 import { Claude } from "@paulkinlan/claude-breadboard-kit";
+// @ts-ignore
+import htmlclean from "htmlclean";
 import jsdom from "jsdom";
 import path from "path";
 import parseArgs from "minimist";
+const argv = parseArgs(process.argv.slice(2));
+if (argv._.length !== 1) {
+    console.error("Usage: summarize.ts <hn-post-id>");
+    process.exit(1);
+}
+const hn_post = argv._[0];
 const kitBuilder = new KitBuilder({
     title: "jsdom",
     description: "Converts html in to a DOM that can be queried.",
@@ -13,10 +21,17 @@ const kitBuilder = new KitBuilder({
 const kit = kitBuilder.build({
     "jsdom": {
         invoke: async function (inputs) {
-            const dom = new jsdom.JSDOM(inputs.html);
+            const dom = new jsdom.JSDOM(htmlclean(inputs.html));
             const text = dom.window.document.body.textContent;
             const url = dom.window.document.querySelector("span.titleline > a")?.href;
             return { text, url };
+        }
+    },
+    "getTextContent": {
+        invoke: async function (inputs) {
+            const dom = new jsdom.JSDOM(htmlclean(inputs.html));
+            const text = dom.window.document.body.textContent;
+            return { text };
         }
     },
     "getTitle": {
@@ -37,12 +52,8 @@ const board = await Board.load(path.join(process.cwd(), "tools", "graphs", "summ
         "jsdom": kit
     }
 });
-const argv = parseArgs(process.argv.slice(2));
-if (argv._.length !== 1) {
-    console.error("Usage: summarize.ts <hn-post-id>");
-    process.exit(1);
-}
-const hn_post = argv._[0];
+//const log = new LogProbe();
+// log.addEventListener("log", console.log)
 const result = await board.runOnce({
     "model": "claude-2",
     "input-hacker-news": hn_post
@@ -60,5 +71,9 @@ tags:
 - summary
 - claude
 ---
+### Article summary
+${data.summary}
+
+### Comment summary
 ${data.text}
 `);

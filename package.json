@@ -12,6 +12,7 @@
     "@vercel/node": "^2.9.10",
     "@vercel/og": "^0.0.21",
     "ava": "^5.2.0",
+    "htmlclean": "^3.0.8",
     "hugo-bin": "^0.115.0",
     "jsdom": "^22.1.0",
     "minimist": "^1.2.8",

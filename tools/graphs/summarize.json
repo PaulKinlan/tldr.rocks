@@ -37,6 +37,12 @@
       "in": "CLAUDE_API_KEY"
     },
     {
+      "from": "secrets",
+      "to": "generateArticleSummaryCompletion",
+      "out": "CLAUDE_API_KEY",
+      "in": "CLAUDE_API_KEY"
+    },
+    {
       "from": "input-model",
       "to": "generateCompletion",
       "out": "model",
@@ -61,6 +67,30 @@
       "in": "html"
     },
     {
+      "from": "fetch-url",
+      "to": "get-text-content",
+      "out": "response",
+      "in": "html"
+    },
+    {
+      "from": "get-text-content",
+      "to": "articleSummaryPromptTemplate",
+      "out": "text",
+      "in": "content"
+    },
+    {
+      "from": "articleSummaryPromptTemplate",
+      "to": "generateArticleSummaryCompletion",
+      "out": "prompt",
+      "in": "text"
+    },
+    {
+      "from": "generateArticleSummaryCompletion",
+      "to": "join",
+      "out": "completion",
+      "in": "summary"
+    },
+    {
       "from": "get-title",
       "to": "join",
       "out": "title",
@@ -82,6 +112,10 @@
   "nodes": [
     {
       "id": "generateCompletion",
+      "type": "generateCompletion"
+    },
+    {
+      "id": "generateArticleSummaryCompletion",
       "type": "generateCompletion"
     },
     {
@@ -126,6 +160,10 @@
       "type": "jsdom"
     },
     {
+      "id": "get-text-content",
+      "type": "getTextContent"
+    },
+    {
       "id": "get-title",
       "type": "getTitle"
     },
@@ -133,7 +171,14 @@
       "id": "promptTemplate",
       "type": "promptTemplate",
       "configuration": {
-        "template": "Summarize this Hacker News post. The output should be in Markdown and have three sections: Positive Sentiment; Negative Sentiment; Recommend actions to address the feedback. Extract up to 5 of the most relevant links to external content that are in the text and add them to an \"Interesting links\" section. Do not include malformed URLs.\n\n{{content}}\n\n## Summary:\n"
+        "template": "Summarize this Hacker News post. The output should be in Markdown and have three sections: Positive Sentiment; Negative Sentiment; Recommend actions to address the feedback. Extract up to 5 of the most relevant links to external content that are in the text and add them to an \"Interesting links\" section. Do not include malformed URLs.\n\n{{content}}\n\n### Summary:\n"
+      }
+    },
+    {
+      "id": "articleSummaryPromptTemplate",
+      "type": "promptTemplate",
+      "configuration": {
+        "template": "Summarize this following blog post:\n{{content}}\n\n## Summary:\n"
       }
     },
     {
