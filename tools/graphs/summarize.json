@@ -178,7 +178,7 @@
       "id": "articleSummaryPromptTemplate",
       "type": "promptTemplate",
       "configuration": {
-        "template": "Summarize this following blog post:\n{{content}}\n\n## Summary:\n"
+        "template": "Create a summary of the following blog post, roughly a paragraph or two in length:\n{{content}}\n\n## Summary:\n"
       }
     },
     {
