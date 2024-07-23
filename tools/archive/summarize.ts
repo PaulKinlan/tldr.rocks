@@ -1,5 +1,10 @@
-import '@anthropic-ai/sdk/shims/web'; // this is needed because Anthropic SDK makes some false assumptions about the environment
-import { Board, InputValues, LogProbe, NodeValue } from "@google-labs/breadboard";
+import "@anthropic-ai/sdk/shims/web"; // this is needed because Anthropic SDK makes some false assumptions about the environment
+import {
+  Board,
+  InputValues,
+  LogProbe,
+  NodeValue,
+} from "@google-labs/breadboard";
 import { KitBuilder } from "@google-labs/breadboard/kits";
 import { Claude } from "@paulkinlan/claude-breadboard-kit";
 // @ts-ignore
@@ -12,7 +17,7 @@ type JSDOMOutputValues = Promise<void | Partial<Record<string, NodeValue>>>;
 
 const argv = parseArgs(process.argv.slice(2));
 
-if (argv._.length !== 1) { 
+if (argv._.length !== 1) {
   console.error("Usage: summarize.ts <hn-post-id>");
   process.exit(1);
 }
@@ -22,56 +27,62 @@ const hn_post = argv._[0];
 const kitBuilder = new KitBuilder({
   title: "jsdom",
   description: "Converts html in to a DOM that can be queried.",
-  url: "npm:jsdom"
+  url: "npm:jsdom",
 });
 
 const kit = kitBuilder.build({
-  "jsdom": {
+  jsdom: {
     invoke: async function (inputs: InputValues): JSDOMOutputValues {
       const dom = new jsdom.JSDOM(htmlclean(<string>inputs.html));
       const text = dom.window.document.body.textContent;
-      const url = (<HTMLAnchorElement> dom.window.document.querySelector("span.titleline > a"))?.href;
+      const url = (<HTMLAnchorElement>(
+        dom.window.document.querySelector("span.titleline > a")
+      ))?.href;
       return { text, url };
-    }
+    },
   },
-  "getTextContent": {
+  getTextContent: {
     invoke: async function (inputs: InputValues): JSDOMOutputValues {
       const dom = new jsdom.JSDOM(htmlclean(<string>inputs.html));
       const text = dom.window.document.body.textContent;
       return { text };
-    }
+    },
   },
-  "getTitle": {
+  getTitle: {
     invoke: async function (inputs: InputValues): JSDOMOutputValues {
       const dom = new jsdom.JSDOM(<string>inputs.html);
 
       return { title: dom.window.document.title };
-    }
+    },
   },
-  "join": {
+  join: {
     invoke: async function (inputs: InputValues): JSDOMOutputValues {
       return { data: JSON.stringify(inputs) };
-    }
-  }
+    },
+  },
 });
 
 const board = await Board.load(
   path.join(process.cwd(), "tools", "graphs", "summarize.json"),
   {
-    "kits": {
+    kits: {
       "@paulkinlan/claude-breadboard-kit": Claude,
-      "jsdom": kit
-    }
+      jsdom: kit,
+    },
   }
 );
 
 //const log = new LogProbe();
 // log.addEventListener("log", console.log)
 
-const result = await board.runOnce({
-  "model": "claude-2",
-  "input-hacker-news": hn_post
-});
+const result = await board.runOnce(
+  {
+    model: "claude-2",
+    "input-hacker-news": hn_post,
+  },
+  unfedined,
+  probe
+);
 
 const data = JSON.parse(<string>result.data);
 
@@ -92,4 +103,4 @@ ${data.summary}
 
 ### Comment summary
 ${data.text}
-`)
+`);

@@ -2,9 +2,11 @@
   "name": "tldr.rocks",
   "description": "tldr.rocks",
   "scripts": {
-    "summarize": "node tools/build/summarize.js"
+    "summarize": "node tools/build/summarize.js",
+    "summary": "node tools/build/summarize-2.js"
   },
   "dependencies": {
+    "@anthropic-ai/sdk": "^0.24.3",
     "@google-labs/breadboard": "^0.4.0",
     "@paulkinlan/claude-breadboard-kit": "^1.2.2",
     "@vercel/analytics": "^1.0.0",
@@ -17,7 +19,8 @@
     "jsdom": "^22.1.0",
     "minimist": "^1.2.8",
     "multiparty": "^4.2.3",
-    "typescript": "^5.2.2",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.5.4",
     "vercel": "^32.4.1"
   },
   "engines": {

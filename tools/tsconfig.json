@@ -9,7 +9,6 @@
     "module": "NodeNext",
     "moduleResolution": "NodeNext"
   },
-  "files": [
-    "summarize.ts",
-  ]
+  "files": ["summarize-2.ts"],
+  "include": ["index.d.ts"]
 }
