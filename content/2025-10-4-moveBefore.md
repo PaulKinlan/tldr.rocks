@@ -17,7 +17,7 @@ The blog post announces that starting from Chrome 135, web developers can now fu
 
 ### Comment summary
 
-Here is a summary of the key points from the Hacker News discussion about customizable <select> elements in CSS:
+Here is a summary of the key points from the Hacker News discussion about customizable `<select>` elements in CSS:
 
 ### Positive Sentiment:
 
