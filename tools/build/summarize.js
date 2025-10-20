@@ -5,31 +5,25 @@ import { createGoogleGenerativeAI } from "@ai-sdk/google";
 import { createGroq } from "@ai-sdk/groq";
 import htmlclean from "htmlclean";
 import jsdom from "jsdom";
-import path from "path";
 import parseArgs from "minimist";
 
 const PageParser = {
-  jsdom: function (html: string): {
-    text: string | null | undefined;
-    url?: string;
-  } {
+  jsdom: function (html) {
     const dom = new jsdom.JSDOM(htmlclean(html));
     const text = dom.window.document.body.textContent;
-    const url = (<HTMLAnchorElement>(
-      dom.window.document.querySelector("span.titleline > a")
-    ))?.href;
+    const url = dom.window.document.querySelector("span.titleline > a")?.href;
     return { text, url };
   },
-  getTextContent: function (html: string): { text: string | null | undefined } {
+  getTextContent: function (html) {
     const dom = new jsdom.JSDOM(htmlclean(html));
     const text = dom.window.document.body.textContent;
     return { text };
   },
-  getTitle: function (html: string): { title: string | null | undefined } {
+  getTitle: function (html) {
     const dom = new jsdom.JSDOM(html);
     return { title: dom.window.document.title };
   },
-  join: function (html: string): { data: string | null | undefined } {
+  join: function (html) {
     return { data: JSON.stringify(html) };
   },
 };
@@ -42,22 +36,28 @@ const argv = parseArgs(process.argv.slice(2), {
 });
 
 if (argv._.length !== 1) {
-  console.error("Usage: summarize.ts <hn-post-id> [--model <provider:model>]");
+  console.error("Usage: summarize.js <hn-post-id> [--model <provider:model>]");
   console.error("\nExamples:");
-  console.error("  node tools/build/summarize-2.js 33287471 --model claude:claude-sonnet-4-5");
-  console.error("  node tools/build/summarize-2.js 33287471 --model openai:gpt-5");
-  console.error("  node tools/build/summarize-2.js 33287471 --model google:gemini-2.5-pro");
-  console.error("  node tools/build/summarize-2.js 33287471 --model groq:openai/gpt-oss-120b");
+  console.error(
+    "  node tools/build/summarize.js 33287471 --model claude:claude-sonnet-4-5"
+  );
+  console.error(
+    "  node tools/build/summarize.js 33287471 --model openai:gpt-5"
+  );
+  console.error(
+    "  node tools/build/summarize.js 33287471 --model google:gemini-2.5-pro"
+  );
+  console.error(
+    "  node tools/build/summarize.js 33287471 --model groq:openai/gpt-oss-120b"
+  );
   process.exit(1);
 }
 
 const hn_post = argv._[0];
-
 // Parse model specification (provider:model or just provider)
 const modelSpec = argv.model;
-let provider: string;
-let modelName: string;
-
+let provider;
+let modelName;
 if (modelSpec.includes(":")) {
   [provider, modelName] = modelSpec.split(":", 2);
 } else {
@@ -84,7 +84,6 @@ if (modelSpec.includes(":")) {
       process.exit(1);
   }
 }
-
 // Get the model instance based on provider
 let model;
 switch (provider.toLowerCase()) {
@@ -118,7 +117,6 @@ switch (provider.toLowerCase()) {
     console.error(`Unknown provider: ${provider}`);
     process.exit(1);
 }
-
 const rawContent = await fetch(
   `https://news.ycombinator.com/item?id=${hn_post}`
 ).then((res) => res.text());
@@ -126,7 +124,6 @@ const rawContent = await fetch(
 const { text, url } = PageParser.jsdom(rawContent);
 const { title } = PageParser.getTitle(rawContent);
 const { text: content } = PageParser.getTextContent(rawContent);
-
 if (url == undefined) {
   console.error("Could not find URL from the Hacker News post.");
   process.exit(1);
@@ -146,7 +143,6 @@ const hnSummary = await generateText({
 });
 
 const articleContent = await fetch(url).then((res) => res.text());
-
 const articleSummary = await generateText({
   model,
   maxOutputTokens: 2048,
@@ -158,7 +154,6 @@ ${articleContent}
 
 `,
 });
-
 console.log(`---
 slug: hn-${hn_post}
 date: '${new Date().toISOString()}'
