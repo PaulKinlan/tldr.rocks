@@ -9,36 +9,36 @@ The tool now supports multiple AI providers including Claude (Anthropic), OpenAI
 ### Basic usage with Claude (default):
 
 ```bash
-CLAUDE_API_KEY="<YOUR_KEY>" node tools/build/summarize-2.js <HN_POST_ID>
+CLAUDE_API_KEY="<YOUR_KEY>" node tools/build/summarize.js <HN_POST_ID>
 ```
 
 ### Specify a different provider:
 
 ```bash
 # Using OpenAI
-OPENAI_API_KEY="<YOUR_KEY>" node tools/build/summarize-2.js <HN_POST_ID> --model openai
+OPENAI_API_KEY="<YOUR_KEY>" node tools/build/summarize.js <HN_POST_ID> --model openai
 
 # Using Google Gemini
-GOOGLE_API_KEY="<YOUR_KEY>" node tools/build/summarize-2.js <HN_POST_ID> --model google
+GOOGLE_API_KEY="<YOUR_KEY>" node tools/build/summarize.js <HN_POST_ID> --model google
 
 # Using Groq
-GROQ_API_KEY="<YOUR_KEY>" node tools/build/summarize-2.js <HN_POST_ID> --model groq
+GROQ_API_KEY="<YOUR_KEY>" node tools/build/summarize.js <HN_POST_ID> --model groq
 ```
 
 ### Specify a specific model:
 
 ```bash
 # Using a specific Claude model
-CLAUDE_API_KEY="<YOUR_KEY>" node tools/build/summarize-2.js <HN_POST_ID> --model claude:claude-sonnet-4-5
+CLAUDE_API_KEY="<YOUR_KEY>" node tools/build/summarize.js <HN_POST_ID> --model claude:claude-sonnet-4-5
 
 # Using a specific OpenAI model
-OPENAI_API_KEY="<YOUR_KEY>" node tools/build/summarize-2.js <HN_POST_ID> --model openai:gpt-5
+OPENAI_API_KEY="<YOUR_KEY>" node tools/build/summarize.js <HN_POST_ID> --model openai:gpt-5
 
 # Using a specific Gemini model
-GOOGLE_API_KEY="<YOUR_KEY>" node tools/build/summarize-2.js <HN_POST_ID> --model google:gemini-2.5-pro
+GOOGLE_API_KEY="<YOUR_KEY>" node tools/build/summarize.js <HN_POST_ID> --model google:gemini-2.5-pro
 
 # Using a specific Groq model
-GROQ_API_KEY="<YOUR_KEY>" node tools/build/summarize-2.js <HN_POST_ID> --model groq:openai/gpt-oss-120b
+GROQ_API_KEY="<YOUR_KEY>" node tools/build/summarize.js <HN_POST_ID> --model groq:openai/gpt-oss-120b
 ```
 
 ### Notes:
