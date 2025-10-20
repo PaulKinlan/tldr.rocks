@@ -2,11 +2,52 @@
 
 tldr.rocks is a tool that analyzes the sentiment of Hacker News posts.
 
-Usage in macOS terminal:
+## Usage
+
+The tool now supports multiple AI providers including Claude (Anthropic), OpenAI, Google Gemini, and Groq.
+
+### Basic usage with Claude (default):
 
 ```bash
 CLAUDE_API_KEY="<YOUR_KEY>" node tools/build/summarize-2.js <HN_POST_ID>
 ```
 
-- You need to create a `CLAUDE_API_KEY` and may need to purchase credits.
+### Specify a different provider:
+
+```bash
+# Using OpenAI
+OPENAI_API_KEY="<YOUR_KEY>" node tools/build/summarize-2.js <HN_POST_ID> --model openai
+
+# Using Google Gemini
+GOOGLE_API_KEY="<YOUR_KEY>" node tools/build/summarize-2.js <HN_POST_ID> --model google
+
+# Using Groq
+GROQ_API_KEY="<YOUR_KEY>" node tools/build/summarize-2.js <HN_POST_ID> --model groq
+```
+
+### Specify a specific model:
+
+```bash
+# Using a specific Claude model
+CLAUDE_API_KEY="<YOUR_KEY>" node tools/build/summarize-2.js <HN_POST_ID> --model claude:claude-3-5-sonnet-20240620
+
+# Using a specific OpenAI model
+OPENAI_API_KEY="<YOUR_KEY>" node tools/build/summarize-2.js <HN_POST_ID> --model openai:gpt-4o
+
+# Using a specific Gemini model
+GOOGLE_API_KEY="<YOUR_KEY>" node tools/build/summarize-2.js <HN_POST_ID> --model google:gemini-1.5-pro
+
+# Using a specific Groq model
+GROQ_API_KEY="<YOUR_KEY>" node tools/build/summarize-2.js <HN_POST_ID> --model groq:llama-3.1-70b-versatile
+```
+
+### Notes:
+
+- You need to create an API key for your chosen provider and may need to purchase credits.
 - `HN_POST_ID` is the unique post ID found in the Hacker News URL. Example: for https://tldr.rocks/hn-33287471/, `HN_POST_ID` is 33287471.
+- Supported providers: `claude` (or `anthropic`), `openai`, `google` (or `gemini`), `groq`
+- Default models:
+  - Claude: `claude-3-5-sonnet-20240620`
+  - OpenAI: `gpt-4o`
+  - Google: `gemini-1.5-pro`
+  - Groq: `llama-3.1-70b-versatile`

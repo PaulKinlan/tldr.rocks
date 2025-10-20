@@ -6,6 +6,10 @@
     "summary": "node tools/build/summarize-2.js"
   },
   "dependencies": {
+    "@ai-sdk/anthropic": "^2.0.33",
+    "@ai-sdk/google": "^2.0.23",
+    "@ai-sdk/groq": "^2.0.24",
+    "@ai-sdk/openai": "^2.0.53",
     "@anthropic-ai/sdk": "^0.24.3",
     "@google-labs/breadboard": "^0.4.0",
     "@paulkinlan/claude-breadboard-kit": "^1.2.2",
@@ -13,6 +17,7 @@
     "@vercel/edge": "^0.2.1",
     "@vercel/node": "^2.9.10",
     "@vercel/og": "^0.0.21",
+    "ai": "^5.0.76",
     "ava": "^5.2.0",
     "htmlclean": "^3.0.8",
     "hugo-bin": "^0.115.0",
