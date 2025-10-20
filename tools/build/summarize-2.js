@@ -35,10 +35,10 @@ const argv = parseArgs(process.argv.slice(2), {
 if (argv._.length !== 1) {
     console.error("Usage: summarize.ts <hn-post-id> [--model <provider:model>]");
     console.error("\nExamples:");
-    console.error("  node tools/build/summarize-2.js 33287471 --model claude:claude-3-5-sonnet-20240620");
-    console.error("  node tools/build/summarize-2.js 33287471 --model openai:gpt-4o");
-    console.error("  node tools/build/summarize-2.js 33287471 --model google:gemini-1.5-pro");
-    console.error("  node tools/build/summarize-2.js 33287471 --model groq:llama-3.1-70b-versatile");
+    console.error("  node tools/build/summarize-2.js 33287471 --model claude:claude-sonnet-4-5");
+    console.error("  node tools/build/summarize-2.js 33287471 --model openai:gpt-5");
+    console.error("  node tools/build/summarize-2.js 33287471 --model google:gemini-2.5-pro");
+    console.error("  node tools/build/summarize-2.js 33287471 --model groq:openai/gpt-oss-120b");
     process.exit(1);
 }
 const hn_post = argv._[0];
@@ -55,17 +55,17 @@ else {
     switch (provider.toLowerCase()) {
         case "claude":
         case "anthropic":
-            modelName = "claude-3-5-sonnet-20240620";
+            modelName = "claude-sonnet-4-5";
             break;
         case "openai":
-            modelName = "gpt-4o";
+            modelName = "gpt-5";
             break;
         case "google":
         case "gemini":
-            modelName = "gemini-1.5-pro";
+            modelName = "gemini-2.5-pro";
             break;
         case "groq":
-            modelName = "llama-3.1-70b-versatile";
+            modelName = "openai/gpt-oss-120b";
             break;
         default:
             console.error(`Unknown provider: ${provider}`);

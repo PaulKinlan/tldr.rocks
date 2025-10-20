@@ -29,16 +29,16 @@ GROQ_API_KEY="<YOUR_KEY>" node tools/build/summarize-2.js <HN_POST_ID> --model g
 
 ```bash
 # Using a specific Claude model
-CLAUDE_API_KEY="<YOUR_KEY>" node tools/build/summarize-2.js <HN_POST_ID> --model claude:claude-3-5-sonnet-20240620
+CLAUDE_API_KEY="<YOUR_KEY>" node tools/build/summarize-2.js <HN_POST_ID> --model claude:claude-sonnet-4-5
 
 # Using a specific OpenAI model
-OPENAI_API_KEY="<YOUR_KEY>" node tools/build/summarize-2.js <HN_POST_ID> --model openai:gpt-4o
+OPENAI_API_KEY="<YOUR_KEY>" node tools/build/summarize-2.js <HN_POST_ID> --model openai:gpt-5
 
 # Using a specific Gemini model
-GOOGLE_API_KEY="<YOUR_KEY>" node tools/build/summarize-2.js <HN_POST_ID> --model google:gemini-1.5-pro
+GOOGLE_API_KEY="<YOUR_KEY>" node tools/build/summarize-2.js <HN_POST_ID> --model google:gemini-2.5-pro
 
 # Using a specific Groq model
-GROQ_API_KEY="<YOUR_KEY>" node tools/build/summarize-2.js <HN_POST_ID> --model groq:llama-3.1-70b-versatile
+GROQ_API_KEY="<YOUR_KEY>" node tools/build/summarize-2.js <HN_POST_ID> --model groq:openai/gpt-oss-120b
 ```
 
 ### Notes:
@@ -47,7 +47,7 @@ GROQ_API_KEY="<YOUR_KEY>" node tools/build/summarize-2.js <HN_POST_ID> --model g
 - `HN_POST_ID` is the unique post ID found in the Hacker News URL. Example: for https://tldr.rocks/hn-33287471/, `HN_POST_ID` is 33287471.
 - Supported providers: `claude` (or `anthropic`), `openai`, `google` (or `gemini`), `groq`
 - Default models:
-  - Claude: `claude-3-5-sonnet-20240620`
-  - OpenAI: `gpt-4o`
-  - Google: `gemini-1.5-pro`
-  - Groq: `llama-3.1-70b-versatile`
+  - Claude: `claude-sonnet-4-5`
+  - OpenAI: `gpt-5`
+  - Google: `gemini-2.5-pro`
+  - Groq: `openai/gpt-oss-120b`
