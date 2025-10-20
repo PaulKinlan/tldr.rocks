@@ -86,30 +86,60 @@ if (modelSpec.includes(":")) {
 }
 // Get the model instance based on provider
 let model;
+let apiKey;
+
 switch (provider.toLowerCase()) {
   case "claude":
   case "anthropic":
+    apiKey = process.env.CLAUDE_API_KEY || process.env.ANTHROPIC_API_KEY;
+    if (!apiKey) {
+      console.error(
+        "Error: No API key found for Claude/Anthropic. Please set CLAUDE_API_KEY or ANTHROPIC_API_KEY environment variable."
+      );
+      process.exit(1);
+    }
     const anthropic = createAnthropic({
-      apiKey: process.env.CLAUDE_API_KEY || process.env.ANTHROPIC_API_KEY,
+      apiKey: apiKey,
     });
     model = anthropic(modelName);
     break;
   case "openai":
+    apiKey = process.env.OPENAI_API_KEY;
+    if (!apiKey) {
+      console.error(
+        "Error: No API key found for OpenAI. Please set OPENAI_API_KEY environment variable."
+      );
+      process.exit(1);
+    }
     const openai = createOpenAI({
-      apiKey: process.env.OPENAI_API_KEY,
+      apiKey: apiKey,
     });
     model = openai(modelName);
     break;
   case "google":
   case "gemini":
+    apiKey = process.env.GOOGLE_API_KEY || process.env.GEMINI_API_KEY;
+    if (!apiKey) {
+      console.error(
+        "Error: No API key found for Google/Gemini. Please set GOOGLE_API_KEY or GEMINI_API_KEY environment variable."
+      );
+      process.exit(1);
+    }
     const google = createGoogleGenerativeAI({
-      apiKey: process.env.GOOGLE_API_KEY || process.env.GEMINI_API_KEY,
+      apiKey: apiKey,
     });
     model = google(modelName);
     break;
   case "groq":
+    apiKey = process.env.GROQ_API_KEY;
+    if (!apiKey) {
+      console.error(
+        "Error: No API key found for Groq. Please set GROQ_API_KEY environment variable."
+      );
+      process.exit(1);
+    }
     const groq = createGroq({
-      apiKey: process.env.GROQ_API_KEY,
+      apiKey: apiKey,
     });
     model = groq(modelName);
     break;
