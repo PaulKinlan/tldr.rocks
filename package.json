@@ -19,9 +19,11 @@
     "htmlclean": "^3.0.8",
     "hugo-bin": "^0.115.0",
     "jsdom": "^22.1.0",
+    "linkedom": "^0.18.12",
     "minimist": "^1.2.8",
     "multiparty": "^4.2.3",
     "ts-node": "^10.9.2",
+    "turndown": "^7.2.1",
     "typescript": "^5.5.4",
     "vercel": "^32.4.1"
   },

@@ -6,6 +6,8 @@ import { createGroq } from "@ai-sdk/groq";
 import htmlclean from "htmlclean";
 import jsdom from "jsdom";
 import parseArgs from "minimist";
+import { parseHTML } from "linkedom";
+import TurndownService from "turndown";
 
 const PageParser = {
   jsdom: function (html) {
@@ -172,13 +174,37 @@ const hnSummary = await generateText({
 `,
 });
 
-const articleContent = await fetch(url).then((res) => res.text());
+const articleContentHTML = await fetch(url).then((res) => res.text());
+
+// Setup Turndown to convert HTML to Markdown
+const turndownService = new TurndownService();
+
+turndownService.addRule("no-style", {
+  filter: ["style", "script", "footer", "iframe", "head", "img", "input"],
+  replacement: function (content) {
+    return "";
+  },
+});
+
+turndownService.addRule("no-link", {
+  filter: ["a"],
+  replacement: function (content) {
+    return content;
+  },
+});
+
+// Parse HTML and convert to markdown
+const { document } = parseHTML(articleContentHTML);
+const articleContent = turndownService.turndown(document.body.innerHTML || articleContentHTML);
+
 const articleSummary = await generateText({
   model,
   maxOutputTokens: 2048,
   prompt: `Create a summary of the following blog post, roughly a paragraph or two in length:
-      
+
+\`\`\`
 ${articleContent}
+\`\`\`
       
 ## Summary:
 
